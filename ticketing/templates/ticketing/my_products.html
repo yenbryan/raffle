@@ -1,0 +1,81 @@
+{% extends 'base_template.html' %}
+
+{% block content %}
+    <hr>
+    <h1>My Products </h1>
+    <hr>
+    {% for ticket in tickets %}
+        {{ ticket.number_of_tickets_sold }}
+    {% endfor %}
+{#    {% for ticket in past_tickets %}#}
+{#        {{ ticket.number_of_tickets_sold }}#}
+{#    {% endfor %}#}
+    {% for product in products %}
+        {{ product.name }}
+    {% endfor %}
+{% endblock %}
+
+{##}
+{#{% extends 'base_template.html' %}#}
+{##}
+{#{% block content %}#}
+{#    <hr>#}
+{#    <h1>My Raffles</h1>#}
+{#    <hr>#}
+{##}
+{#    <div class="panel panel-default">#}
+{#        <div class="panel-heading"><h4>Current raffles</h4></div>#}
+{#        <div class="panel-body">#}
+{#            {% for ticket in tickets %}#}
+{#                <div class="panel panel-default">#}
+{#                    <div class="panel-body">#}
+{#                        <div class="media">#}
+{#                            <a class="thumbnail pull-left" href="#">#}
+{#                                <img class="media-object" src="//placehold.it/100">#}
+{#                            </a>#}
+{#                        <div class="media-body">#}
+{#                            <h3 class="media-heading"><a href="{% url 'view_product' ticket.product.id %}">{{ ticket.product.name }}</a></h3>#}
+{#                            <p>#}
+{#                                <span >description area{{ ticket.product.description }}</span>#}
+{#                            </p>#}
+{#                            <p>starts: <span class="glyphicon glyphicon-calendar"></span> {{ ticket.product.start_time }} ends: <span class="glyphicon glyphicon-calendar"></span>{{ ticket.product.end_time }}</p>#}
+{#                            <p>#}
+{#                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.count }} ticket purchased</a>#}
+{#                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.winning_probability }}% chance of winning</a>#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="panel panel-default">#}
+{#        <div class="panel-heading"><h4>Past raffles</h4></div>#}
+{#        <div class="panel-body">#}
+{#            {% for ticket in past_tickets %}#}
+{#                <div class="panel panel-default">#}
+{#                    <div class="panel-body">#}
+{#                        <div class="media">#}
+{#                            <a class="thumbnail pull-left" href="#">#}
+{#                                <img class="media-object" src="//placehold.it/100">#}
+{#                            </a>#}
+{#                        <div class="media-body">#}
+{#                            <h3 class="media-heading"><a href="{% url 'view_product' ticket.product.id %}">{{ ticket.product.name }}</a></h3>#}
+{#                            <p>#}
+{#                                <span >description area{{ ticket.product.description }}</span>#}
+{#                            </p>#}
+{#                            <p>starts: <span class="glyphicon glyphicon-calendar"></span> {{ ticket.product.start_time }} ends: <span class="glyphicon glyphicon-calendar"></span>{{ ticket.product.end_time }}</p>#}
+{#                            <p>#}
+{#                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.count }} ticket purchased</a>#}
+{#                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.winning_probability }}% chance of winning</a>#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}

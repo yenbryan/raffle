@@ -1,0 +1,87 @@
+{% extends "profile/profile_base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3 text-center">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                    Welcome, {{ user.first_name }}
+                </h3>
+              </div>
+              <div class="panel-body">
+                  {% if profile.image.url %}
+                      <img src="{{ profile.image.url }}" class="img-responsive"/>
+                  {% else %}
+                      <img src="http://placehold.it/200x250&text=profile+picture" class="img-responsive">
+                  {% endif %}
+              </div>
+              <div class="panel-body">
+                {{ user.email }}
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Messages
+                    <span class="pull-right">
+                        <a href="{% url 'send_message' %}">send message</a>
+                    </span>
+                </h3>
+              </div>
+                 <ul class="list-group">
+                     {% for message in received_messages %}
+                        <li class="list-group-item"><b><a href="{% url 'view_message' message.message.id %}">{{ message.message }}</a></b>  <span class="pull-right"><b>from:</b> {{ message.message.sender }}  <b>on</b> {{ message.message.created_at }}</span></li>
+                     {% endfor %}
+                </ul>
+
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Profile Details
+                    <span class="pull-right">
+                        <a id="profile-edit">edit</a>
+                    </span>
+                    <span class="pull-right">
+                        <a id="profile-done">done</a>
+                    </span>
+                </h3>
+              </div>
+              <div class="panel-body" id="profile-info">
+                <b>First Name:</b> {{ user.first_name }}<br>
+                <b>Last Name:</b> {{ user.last_name }}
+              </div>
+              <div class="panel-body" id="profile-edit-form">
+                {{ profile_form.first_name }}<br>
+                {{ profile_form.last_name }}
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">About Me
+                    <span class="pull-right">
+                        <a id="about-me-edit">edit</a>
+                    </span>
+                    <span class="pull-right">
+                        <a id="about-me-done">done</a>
+                    </span>
+                </h3>
+              </div>
+              <div class="panel-body panel-info">
+                {{ user.about_me }}
+              </div>
+              <div class="panel-body panel-edit-form">
+                {{ about_me_form.description }}
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-9">
+
+        </div>
+    </div>
+{% endblock %}

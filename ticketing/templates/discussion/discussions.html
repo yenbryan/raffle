@@ -1,0 +1,60 @@
+{% extends "discussion/discussion_base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                    <b>All Discussions</b>
+                </h3>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <b>Cateogries</b>
+                    </h3>
+                </div>
+                    <ul class="list-group">
+                        {% for category in categories %}
+                            <li class="list-group-item">
+                                <a id="{{ category }}" class="category-select" data-category="{{ category.name }}">{{ category }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </div>
+        </div>
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <b>Topics</b>
+                        </h3>
+                    </div>
+                    <ul class="list-group" id="initial-category">
+                        <li class="list-group-item">
+                            select the categories on the left
+                        </li>
+                    </ul>
+                    {% for category in categories %}
+                        <ul class="list-group" id="list-{{ category.name }}" style="display:none;">
+                            {% for discussion in discussions %}
+                                {% if discussion.category == category %}
+                                    <li class="list-group-item">
+                                        <a href="{% url 'view_discussion' discussion.id %}">{{ discussion.title }}</a>
+                                    </li>
+                                {% endif %}
+
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+{% endblock %}

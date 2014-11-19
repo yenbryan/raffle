@@ -1,0 +1,13 @@
+---
+
+- name: Provision a the slide presentation tool server
+  hosts: all
+  sudo: yes
+  sudo_user:
+  roles:
+    - base
+    - db
+    - web
+
+  vars_files:
+  - env_vars/production.yml

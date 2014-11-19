@@ -1,0 +1,43 @@
+{% extends 'base_template.html' %}
+
+{% block content %}
+    <hr>
+    <h1>Available Products </h1>
+    <hr>
+
+    {% for product in products %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="media">
+                    <a class="thumbnail pull-left" href="#">
+                        <img class="media-object" src="{{ product.default_picture.image.url }}">
+                    </a>
+                    <div class="media-body">
+                    <h3 class="media-heading"><a href="{% url 'view_product' product.id %}">{{ product.name }}</a></h3>
+                    <p>
+                        <span >description area{{ product.description }}</span>
+                    </p>
+                    <p>starts: <span class="glyphicon glyphicon-calendar"></span> {{ product.start_time }} ends: <span class="glyphicon glyphicon-calendar"></span>{{ product.end_time }}</p>
+                    <p>
+                    <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ product.tickets_sold }} ticket sold</a>
+                    <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-star"></span> buy tickets now</a>
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="col-sm-12 text-center">
+      <ul class="pagination center-block" style="display:inline-block;">
+          {% if products.has_previous %}
+            <li><a href="?page={{ products.previous_page_number }}">«</a></li>
+          {% endif %}
+          {% for page in products.paginator.page_range %}
+            <li><a href="?page={{ page }}">{{ page }}</a></li>
+          {% endfor %}
+          {% if products.has_next %}
+            <li><a href="?page={{ products.next_page_number }}">»</a></li>
+          {% endif %}
+      </ul>
+    </div>
+{% endblock %}

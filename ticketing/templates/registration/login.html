@@ -1,0 +1,20 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+{% endblock %}
+
+<form method="post" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.username }}
+
+                        </div>
+                        <div class="form-group">
+                            {{ form.password }}
+
+                        </div>
+                        <button class="btn btn-xl pull-left" type="submit">register</button>
+                        <button class="btn btn-xl facebook-blue pull-right center" id="facebook-btn-2"><a href="{% url "social:begin" "facebook" %}">f&nbsp;login</a></button>
+                        <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
+                    </form>

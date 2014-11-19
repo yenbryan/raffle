@@ -1,0 +1,19 @@
+{% extends "message/message_base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Messages</h3>
+              </div>
+                 <ul class="list-group">
+                     {% for message in received_messages %}
+                        <li class="list-group-item"><b><a href="{% url 'view_message' message.message.id %}">{{ message.message }}</a></b>  <span class="pull-right"><b>from:</b> {{ message.message.sender }}  <b>on</b> {{ message.message.created_at }}</span></li>
+                     {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

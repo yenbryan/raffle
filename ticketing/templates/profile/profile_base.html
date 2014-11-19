@@ -1,0 +1,37 @@
+{% extends "base_template_old.html" %}
+
+{% block profile_content %}
+    <div class="row">
+        <div class="navbar">
+            <div class="navbar-inner navbar-fixed-top" data-spy="affix" data-offset-top="51">
+{#            <div class="navbar-inner navbar-fixed-top" id="topwrapper">#}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <ul class="nav navbar-nav sub-nav">
+                                <li class="navbar-link {{ dashboard }}">
+                                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                                </li>
+                                <li class="navbar-link {{ messageactive }}">
+                                    <a href="{% url 'all_message' %}">Message</a>
+                                </li>
+                                <li class="navbar-link {{ discussionactive }}">
+                                    <a href="{% url 'discussions' %}">Discussion</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+{#                    <div class="row">#}
+{#                        <div class="col-sm-12">#}
+{#                            <ol class="breadcrumb">#}
+{#                              <li><a href="#"></a></li>#}
+{#                              <li><a href="#"></a></li>#}
+{#                              <li class=""></li>#}
+{#                            </ol>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

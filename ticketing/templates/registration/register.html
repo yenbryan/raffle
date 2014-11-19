@@ -1,0 +1,17 @@
+{% extends "base_template_old.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <H1>Register.html</H1>
+            <form method="post" action="">
+                email: {{ form.email }}
+                username: {{ form.username }}
+                password: {{ form.password1 }}
+                confrim password: {{ form.password2 }}
+                {% csrf_token %}
+                <button class="btn btn-xl" type="submit">register</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

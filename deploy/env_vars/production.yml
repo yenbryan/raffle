@@ -1,0 +1,8 @@
+---
+
+db_name: "raffle"
+db_user: "raffle"
+db_password: "raffle"
+nginx_server_name: ec2-54-68-223-247.us-west-2.compute.amazonaws.com
+django_settings_file: "raffle.settings"
+proxy_ip: 127.0.0.1:8001

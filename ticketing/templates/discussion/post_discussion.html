@@ -1,0 +1,51 @@
+{% extends "discussion/discussion_base.html" %}
+{% extends "discussion/discussion_base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                    <b>Post Discussions</b>
+                </h3>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <b>Cateogries</b>
+                    </h3>
+                </div>
+                    <ul class="list-group">
+{#                        {% for category in categories %}#}
+                            <li class="list-group-item">
+{#                                <a id="{{ category }}" class="category-select" data-category="{{ category.name }}">{{ category }}</a>#}
+                            </li>
+{#                        {% endfor %}#}
+                    </ul>
+            </div>
+        </div>
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <b>Topics</b>
+                        </h3>
+                    </div>
+                        <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ disussion_form.as_p}}<br>
+                        </div>
+                        <button class="btn btn-xl" type="submit">Send Message</button>
+                </form>
+                </div>
+            </div>
+    </div>
+{% endblock %}
