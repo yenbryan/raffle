@@ -109,7 +109,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'e72b538d8816227aa44d4f9d582a7f23'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile', 'user_photos']
 
 # Related to users
-LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_REDIRECT_URL = 'account'
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'registration.Profile'
 SOCIAL_AUTH_NEW_USER_REDIRECT_URL = 'new-social-user-redirect'

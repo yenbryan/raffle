@@ -117,3 +117,8 @@ h3,h4,h5 {
     height: 100% !important;
     width: auto;
 }
+
+.thumbnail {
+    width: 150px;
+    height: auto;
+}

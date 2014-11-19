@@ -92,4 +92,6 @@ def create_raffle(request):
     create_raffle_form = CreateRaffleForm()
     return render(request, 'create_raffle.html', {'form': create_raffle_form})
 
-# 10.12.6.204
+
+def purchase(request, product_id):
+    pass

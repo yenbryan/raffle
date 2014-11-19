@@ -14,7 +14,7 @@
                     <div class="panel-body">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#">
-                                <img class="media-object" src="//placehold.it/100">
+                                <img class="media-object" src="{{ ticket.product.default_picture.image.url }}">
                             </a>
                         <div class="media-body">
                             <h3 class="media-heading"><a href="{% url 'view_product' ticket.product.id %}">{{ ticket.product.name }}</a></h3>
@@ -43,7 +43,7 @@
                     <div class="panel-body">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#">
-                                <img class="media-object" src="//placehold.it/100">
+                                <img class="media-object" src="{{ ticket.product.default_picture.image.url }}">
                             </a>
                         <div class="media-body">
                             <h3 class="media-heading"><a href="{% url 'view_product' ticket.product.id %}">{{ ticket.product.name }}</a></h3>

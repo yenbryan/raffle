@@ -17,7 +17,8 @@
 	</head>
 	<body>
 <nav class="navbar navbar-fixed-top header">
-	<div class="col-sm-offset-4 col-sm-6">
+    <div class="container">
+	<div class="col-sm-12">
         <div class="navbar-header">
 
           <a href="#" class="navbar-brand">raffler</a>
@@ -35,34 +36,38 @@
                 </div>
               </div>
           </form>
-{#          <ul class="nav navbar-nav navbar-right">#}
-{#             <li><a href="http://www.bootply.com" target="_ext">Bootply+</a></li>#}
-{#             <li>#}
-{#                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>#}
-{#                <ul class="dropdown-menu">#}
-{#                  <li><a href="#"><span class="badge pull-right">40</span>Link</a></li>#}
-{#                  <li><a href="#"><span class="badge pull-right">2</span>Link</a></li>#}
-{#                  <li><a href="#"><span class="badge pull-right">0</span>Link</a></li>#}
-{#                  <li><a href="#"><span class="label label-info pull-right">1</span>Link</a></li>#}
-{#                  <li><a href="#"><span class="badge pull-right">13</span>Link</a></li>#}
-{#                </ul>#}
-{#             </li>#}
-{#             <li><a href="#" id="btnToggle"><i class="glyphicon glyphicon-th-large"></i></a></li>#}
-{#             <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>#}
-{#           </ul>#}
+          <ul class="nav navbar-nav navbar-right">
+             <li><a href="{% url 'products' %}" target="_ext">Discover Products</a></li>
+             <li>
+                <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown">
+                  {{ user.username }} <small><i class="glyphicon glyphicon-chevron-down"></i></small>
+              </a>
+
+              <ul class="nav dropdown-menu">
+                  <li><a href="{% url 'my_tickets' %}">my tickets</a></li>
+                  <li><a href="{% url 'my_products' %}">my products</a></li>
+                  <li class="nav-divider"></li>
+                  <li><a href="{% url 'account' %}">account</a></li>
+                  <li><a href="{% url 'logout' %}"> logout</a></li>
+              </ul>
+             </li>
+           </ul>
         </div>
      </div>
+    </div>
 </nav>
 
 <div class="navbar navbar-default" id="subnav">
     <div class="container">
         <div class="col-md-12">
             {% if user.is_authenticated %}
+
             <div class="navbar-header navbar-right">
 
               <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown">
                   {{ user.username }} <small><i class="glyphicon glyphicon-chevron-down"></i></small>
               </a>
+
               <ul class="nav dropdown-menu">
                   <li><a href="{% url 'my_tickets' %}">my tickets</a></li>
                   <li><a href="{% url 'my_products' %}">my products</a></li>
@@ -79,12 +84,18 @@
               </button>
 
             </div>
+            <div>
+
+            </div>
             <div class="collapse navbar-collapse" id="navbar-collapse2">
               <ul class="nav navbar-nav navbar-left">
+
                  <li class="active"><a href="{% url 'products' %}">Available Products</a></li>
 {#                 <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>#}
 {#                 <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>#}
                </ul>
+
+
             </div>
             {% else %}
             {% endif %}

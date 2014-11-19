@@ -14,15 +14,15 @@
         {{ product.name }}
     {% endfor %}
 {% endblock %}
-
 {##}
 {#{% extends 'base_template.html' %}#}
 {##}
 {#{% block content %}#}
 {#    <hr>#}
-{#    <h1>My Raffles</h1>#}
+{#    <h1>My Tickets</h1>#}
 {#    <hr>#}
-{##}
+{#    <div class="row">#}
+{#    <div class="col-sm-6">#}
 {#    <div class="panel panel-default">#}
 {#        <div class="panel-heading"><h4>Current raffles</h4></div>#}
 {#        <div class="panel-body">#}
@@ -31,7 +31,7 @@
 {#                    <div class="panel-body">#}
 {#                        <div class="media">#}
 {#                            <a class="thumbnail pull-left" href="#">#}
-{#                                <img class="media-object" src="//placehold.it/100">#}
+{#                                <img class="media-object" src="{{ ticket.product.default_picture.image.url }}">#}
 {#                            </a>#}
 {#                        <div class="media-body">#}
 {#                            <h3 class="media-heading"><a href="{% url 'view_product' ticket.product.id %}">{{ ticket.product.name }}</a></h3>#}
@@ -50,7 +50,8 @@
 {#            {% endfor %}#}
 {#        </div>#}
 {#    </div>#}
-{##}
+{#    </div>#}
+{#    <div class="col-sm-6">#}
 {#    <div class="panel panel-default">#}
 {#        <div class="panel-heading"><h4>Past raffles</h4></div>#}
 {#        <div class="panel-body">#}
@@ -59,7 +60,7 @@
 {#                    <div class="panel-body">#}
 {#                        <div class="media">#}
 {#                            <a class="thumbnail pull-left" href="#">#}
-{#                                <img class="media-object" src="//placehold.it/100">#}
+{#                                <img class="media-object" src="{{ ticket.product.default_picture.image.url }}">#}
 {#                            </a>#}
 {#                        <div class="media-body">#}
 {#                            <h3 class="media-heading"><a href="{% url 'view_product' ticket.product.id %}">{{ ticket.product.name }}</a></h3>#}
@@ -77,5 +78,7 @@
 {#                </div>#}
 {#            {% endfor %}#}
 {#        </div>#}
+{#    </div>#}
+{#    </div>#}
 {#    </div>#}
 {#{% endblock %}#}
