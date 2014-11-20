@@ -135,3 +135,7 @@ a.navbar-brand {
     font-family: 'Abril Fatface', cursive;
     font-size: 45px;
 }
+
+img {
+    width: 100%;
+}
