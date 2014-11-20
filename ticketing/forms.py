@@ -29,7 +29,7 @@ class TicketPurchaseForm(forms.Form):
             })
         if result.is_success:
             print("success!: " + result.transaction.id)
-            for ticket in range(1, int(self.cleaned_data['quantity'])):
+            for ticket in range(0, int(self.cleaned_data['quantity'])):
                 Ticket.objects.create(user=user,product=product)
         elif result.transaction:
             print("Error processing transaction:")
