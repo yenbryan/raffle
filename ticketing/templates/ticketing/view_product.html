@@ -1,7 +1,75 @@
 {% extends 'base_template.html' %}
 
 {% block content %}
+    {% if raffle_ended %}
+    <div class="col-sm-12 text-center">
+        <h3> this raffle has ended </h3>
+        <h4> the winner is ticket number {{ product.winning_ticket_number }}<h4>
+    </div>
+    {% endif %}
+    {% if result %}
+        {% if result.is_success %}
+            <div class="alert alert-success alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <strong>Congrats</strong> your purchase went through!
+            </div>
+        {% else %}
+            <div class="alert alert-danger alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <strong>SORRY</strong> your purchase did not go through!
+            </div>
+        {% endif %}
+    {% endif %}
     <hr>
-    <h1> {{ product.name }} </h1>
+    <div class="col-sm-8">
+        <h2 class="text-center"> {{ product.name }} </h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="panel panel-default">
+           <div class="panel-heading"><h4>purchase tickets now<span class="pull-right">raffler ends: {{ product.end_time }}</span></h4></div>
+   			<div class="panel-body">
+              <p></p>
+              <form method="post" action="{% url 'view_product' product.id %}">
+                   {% csrf_token %}
+                    <div class="col-sm-7">
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" disabled="disabled">{{ product.get_ticket_price }} per raffle ticket</button>
+                            <button class="btn btn-default" disabled="disabled">{{ product.tickets_sold }} tickets sold</button>
+                        </div>
+                        {{ purchase_form.quantity }}
+                      </div>
+                     </div>
+                    <div class="col-sm-5 pull-right"> <button class="btn btn-success center-block" type="submit">Buy Ticket</button></div>
+          	  </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="panel panel-default">
+           <div class="panel-heading"><h4>Anayltics</h4></div>
+   			<div class="panel-body">
+              <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+           <div class="panel-heading"></div>
+   			<div class="panel-body">
+              <p><img src="{{ product.default_picture.image.url }}"></p>
+            </div>
+        </div>
+    </div>
+
     <hr>
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+           <div class="panel-heading"><h4>product description</h4></div>
+   			<div class="panel-body">
+              <p>{{ product.description }}</p>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

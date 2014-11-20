@@ -1,10 +1,11 @@
 import braintree
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Count
-from django.shortcuts import render, redirect
-from ticketing.forms import CreateRaffleForm
+from django.shortcuts import render, redirect, get_object_or_404
+from ticketing.forms import CreateRaffleForm, TicketPurchaseForm
 from ticketing.models import Product, Ticket, Picture
 import datetime
+import pytz
 
 braintree.Configuration.configure(
     braintree.Environment.Sandbox,
@@ -12,6 +13,7 @@ braintree.Configuration.configure(
     public_key='nrn2r5tngvrn5f2v',
     private_key='0f09fcb2f66e479b3473297b35d85d35'
 )
+
 
 def products(request):
     all_products = Product.objects.filter(end_time__gte=datetime.datetime.now())
@@ -31,9 +33,28 @@ def products(request):
 
 
 def view_product(request, product_id):
-    product = Product.objects.get(pk=product_id)
+    product = get_object_or_404(Product, pk=product_id)
+    purchase_form = TicketPurchaseForm()
+
+    if request.method == "POST":
+        purchase_form = TicketPurchaseForm(request.POST)
+
+        if purchase_form.is_valid():
+            result = purchase_form.purchase(request.user, product_id)
+            return render(request,'ticketing/view_product.html', {
+                'product': product,
+                'purchase_form': purchase_form,
+                'result': result
+            })
+    raffle_ended = False
+    if product.end_time < pytz.utc.localize(datetime.datetime.now()):
+        raffle_ended = True
+
     return render(request,'ticketing/view_product.html', {
         'product': product,
+        'purchase_form': purchase_form,
+        'raffle_ended': raffle_ended
+        # 'today': datetime.datetime.now()
     })
 
 
@@ -72,6 +93,7 @@ def my_tickets(request):
             'count': ticket_count,
             'total_tickets': product.total_number_of_tickets,
             'winning_probability': product.get_winning_probability(ticket_count),
+            'tickets': unexpired_tickets
         })
     for ticket in expired_tickets:
         ticket_count = Ticket.objects.filter(product=ticket.product, user=request.user).count()
@@ -79,6 +101,7 @@ def my_tickets(request):
         past_ticket_list.append({
             'product': product,
             'count': ticket_count,
+            'tickets': expired_tickets
         })
     return render(request, 'ticketing/my_tickets.html', {
         'tickets': current_ticket_list,
@@ -87,40 +110,20 @@ def my_tickets(request):
 
 
 def splash_index(request):
-    return render(request, 'body_template.html')
+    products = Product.objects\
+                   .filter(end_time__gte=datetime.datetime.now())\
+                   .order_by('?')[:9]
+    return render(request, 'splash_index.html', {'products': products})
 
 
 def create_raffle(request):
     create_raffle_form = CreateRaffleForm()
 
     if request.method == "POST":
-        raffle_form = CreateRaffleForm(request.POST)
+        raffle_form = CreateRaffleForm(request.POST, request.FILES)
 
         if raffle_form.is_valid():
             raffle = raffle_form.save(request.user)
             if raffle:
-                return redirect('my_products')
-    #
-    #         if message:
-    #             for recipient in send_form.cleaned_data['recipient']:
-    #                 receiver = Receiver.objects.create(message=message,
-    #                                                    recipient=Profile.objects.get(id=recipient))
-    #             return redirect('dashboard')
-    # data = {'messageactive': 'active',
-    #         'profile': profile_picture,
-    #         'send_form': send_form}
-
+                return redirect('view_product', raffle.id)
     return render(request, 'create_raffle.html', {'form': create_raffle_form})
-
-    # send_form = SendMessageForm()
-    # profile = Profile.objects.get(id=request.user.id)
-    # try:
-    #     profile_picture = ProfilePicture.objects.get(profile=profile, default_picture=True)
-    # except:
-    #     profile_picture = None
-    #
-    #
-    # return render(request, 'message/send_message.html', data)
-
-def purchase(request, product_id):
-    pass

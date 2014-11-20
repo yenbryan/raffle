@@ -1,17 +1,27 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-xs-6 col-md-6">
-            <H1>Register.html</H1>
+<div class="col-sm-offset-3 col-sm-6">
+    <div class="panel panel-default text-center">
+      <div class="panel-heading"><h3>Register</h3></div>
+        <div class="panel-body">
             <form method="post" action="">
-                email: {{ form.email }}
-                username: {{ form.username }}
-                password: {{ form.password1 }}
-                confrim password: {{ form.password2 }}
-                {% csrf_token %}
-                <button class="btn btn-xl" type="submit">register</button>
+            {% csrf_token %}
+                {{ form.email }}
+                <br>
+                {{ form.username }}
+                <br>
+                {{ form.password1 }}
+                <br>
+                {{ form.password2 }}
+               <br>
+            <button class="btn btn-xl" type="submit">register</button>
+            <br>
+            <br>
+            <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
             </form>
         </div>
     </div>
+</div>
 {% endblock %}
+

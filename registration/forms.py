@@ -55,12 +55,16 @@ class AboutMeForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',
                                                                 'placeholder': 'description'}))
 
-
 class ProfileForm(forms.Form):
+    pass
+
+
+class AccountForm(forms.Form):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
                                                                 'placeholder': 'first name'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
                                                                 'placeholder': 'last name'}))
-
-class AccountForm(forms.Form):
-    pass
+    credit_card_number = forms.CharField(max_length=16, widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                'placeholder': 'credit card number'}))
+    expiration_date = forms.CharField(max_length=7,widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                'placeholder': 'exp date'}))

@@ -1,0 +1,32 @@
+{% extends 'base_template.html' %}
+
+{% block content %}
+    <hr>
+  
+	<div class="row">
+        {% for product in products %}
+          <div class="col-sm-4 col-xs-6">
+            <div class="panel panel-default">
+              <div class="panel-thumbnail"><img src="{{ product.default_picture.image.url  }}" class="img-responsive"></div>
+              <div class="panel-body">
+                <p class="lead"><a href="{% url 'view_product' product.id %}">{{ product.name }}</a></p>
+                  <p class="pull-right">ticket price: {{ product.get_ticket_price }}</p>
+                <p>raffler ends: <span class="glyphicon glyphicon-calendar"></span>{{ product.end_time }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+  	</div>
+  
+  	<hr>
+
+  	<div class="row">
+  		<div class="col-md-12 text-center"><h2>Create your own raffle</h2>
+        Raffler gives you everything you need to raffle your items away.
+        <br>
+        <br>
+            <button class="btn btn-success center-block"><a class="btn btn-success center-block" href="{% url 'create_raffle' %}">Create Raffler</a></button>
+        </div>
+
+    </div>
+{% endblock %}

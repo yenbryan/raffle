@@ -1,19 +1,25 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-<form method="post" action="">
-{% csrf_token %}
-<div class="form-group">
-{{ form.username }}
+<div class="col-sm-offset-3 col-sm-6">
+    <div class="panel panel-default text-center">
+      <div class="panel-heading"><h3>Login</h3></div>
+        <div class="panel-body">
+            <form method="post" action="">
+            {% csrf_token %}
+            {{ form.username }}
+            <br>
 
-</div>
-<div class="form-group">
-{{ form.password }}
+            {{ form.password }}
+            <br>
 
+            <button class="btn btn-xl" type="submit">login</button>
+            <br>
+            <br>
+            <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
+            </form>
+        </div>
+    </div>
 </div>
-<button class="btn btn-xl pull-left" type="submit">register</button>
-<button class="btn btn-xl facebook-blue pull-right center" id="facebook-btn-2"><a href="{% url "social:begin" "facebook" %}">f&nbsp;login</a></button>
-<p>Not member? <a href="{% url 'register' %}">Register!</a></p>
-</form>
 {% endblock %}
 

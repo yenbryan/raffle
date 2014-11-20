@@ -5,7 +5,7 @@
     <h1>My Tickets</h1>
     <hr>
     <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
     <div class="panel panel-default">
         <div class="panel-heading"><h4>Current raffles</h4></div>
         <div class="panel-body">
@@ -19,12 +19,12 @@
                         <div class="media-body">
                             <h3 class="media-heading"><a href="{% url 'view_product' ticket.product.id %}">{{ ticket.product.name }}</a></h3>
                             <p>
-                                <span >description area{{ ticket.product.description }}</span>
+                                <span >description area{{ ticket.product.description |slice:":150" }}</span>
                             </p>
                             <p>starts: <span class="glyphicon glyphicon-calendar"></span> {{ ticket.product.start_time }} ends: <span class="glyphicon glyphicon-calendar"></span>{{ ticket.product.end_time }}</p>
                             <p>
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.count }} ticket purchased</a>
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.winning_probability }}% chance of winning</a>
+                            <a href="#" class="btn btn-xs btn-default" disabled="disabled"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.count }} ticket purchased</a>
+                            <a href="#" class="btn btn-xs btn-default" disabled="disabled"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.winning_probability }}% chance of winning</a>
                             </p>
                         </div>
                         </div>
@@ -34,7 +34,7 @@
         </div>
     </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-12">
     <div class="panel panel-default">
         <div class="panel-heading"><h4>Past raffles</h4></div>
         <div class="panel-body">
@@ -48,12 +48,12 @@
                         <div class="media-body">
                             <h3 class="media-heading"><a href="{% url 'view_product' ticket.product.id %}">{{ ticket.product.name }}</a></h3>
                             <p>
-                                <span >description area{{ ticket.product.description }}</span>
+                                <span >description area{{ ticket.product.description |slice:":150" }}</span>
                             </p>
                             <p>starts: <span class="glyphicon glyphicon-calendar"></span> {{ ticket.product.start_time }} ends: <span class="glyphicon glyphicon-calendar"></span>{{ ticket.product.end_time }}</p>
                             <p>
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.count }} ticket purchased</a>
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.winning_probability }}% chance of winning</a>
+                            <a href="#" class="btn btn-xs btn-default" disabled="disabled"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.count }} ticket purchased</a>
+                            <a href="#" class="btn btn-xs btn-default" disabled="disabled"><span class="glyphicon glyphicon-th-large"></span> {{ ticket.winning_probability }}% chance of winning</a>
                             </p>
                         </div>
                         </div>
@@ -64,4 +64,23 @@
     </div>
     </div>
     </div>
+
+{# <div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">#}
+{#  <div class="modal-dialog">#}
+{#  <div class="modal-content">#}
+{#      <div class="modal-header">#}
+{#          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>#}
+{#          <h2 class="text-center">My Ticket Numbers</h2>#}
+{#      </div>#}
+{#      <div class="modal-body">#}
+{#          <div class="col-md-12 text-center">#}
+{#                {% for ticket. %}#}
+{#          </div>#}
+{#      </div>#}
+{#      <div class="modal-footer">#}
+{#          <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>#}
+{#      </div>#}
+{#  </div>#}
+{#  </div>#}
+{#</div>#}
 {% endblock %}

@@ -1,12 +1,33 @@
 {% extends 'base_template.html' %}
 
 {% block content %}
+    <div class="col-sm-12 text-center">
     <hr>
     <h1>Create Raffler</h1>
     <hr>
-    <form method="post" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-xl" type="submit">Create Raffle</button>
-    </form>
+    </div>
+    <div class="col-sm-8">
+    <div class="panel panel-default">
+       <div class="panel-heading"><h4>fill out the follow information</h4></div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-xl" type="submit">Create Raffle</button>
+            </form>
+          </ul>
+        </div>
+   	</div>
+    </div>
+    <div class="col-sm-4">
+    <div class="panel panel-default">
+       <div class="panel-heading"><h4>potential amount of money to make</h4></div>
+        <div class="panel-body">
+          <ul class="list-group">
+
+          </ul>
+        </div>
+   	</div>
+    </div>
 {% endblock %}

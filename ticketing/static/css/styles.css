@@ -10,6 +10,8 @@ author: bootply.com
 */
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400);
+@import url(http://fonts.googleapis.com/css?family=Abril+Fatface);
+
 body {
   background-color:#e0e0e0;
   -webkit-font-smoothing: antialiased;
@@ -126,4 +128,10 @@ h3,h4,h5 {
 #search-create {
     height: 50px;
     margin-top: 20px;
+}
+
+a.navbar-brand {
+    /*font-family: 400 87px/84px Abril Fatface;*/
+    font-family: 'Abril Fatface', cursive;
+    font-size: 45px;
 }

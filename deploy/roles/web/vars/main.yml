@@ -7,4 +7,4 @@ virtualenv_path: /home/ubuntu/.virtualenvs/{{ project_name }}
 project_path: "/home/ubuntu/{{ project_name }}"
 requirements_file: "{{ project_path }}/requirements.txt"
 supervisor_path: /etc/supervisor/conf.d/{{ project_name }}.conf
-wsgi_root: {{ project_name }}
+wsgi_root: "{{ project_name }}"

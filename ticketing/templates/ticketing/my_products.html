@@ -28,7 +28,7 @@
     <h1>My Products</h1>
     <hr>
     <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
     <div class="panel panel-default">
         <div class="panel-heading"><h4>Current Products</h4></div>
         <div class="panel-body">
@@ -42,11 +42,11 @@
                         <div class="media-body">
                             <h3 class="media-heading"><a href="{% url 'view_product' product.id %}">{{ product.name }}</a></h3>
                             <p>
-                                <span >description area{{ product.description }}</span>
+                                <span >description area{{ product.description |slice:":150" }}</span>
                             </p>
                             <p>starts: <span class="glyphicon glyphicon-calendar"></span> {{ product.start_time }} ends: <span class="glyphicon glyphicon-calendar"></span>{{ product.end_time }}</p>
                             <p>
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> total {{ product.ticket_count }} tickets sold</a>
+                            <a href="#" class="btn btn-xs btn-default" disabled="disabled"><span class="glyphicon glyphicon-th-large"></span> total {{ product.ticket_count }} tickets sold</a>
                             </p>
                         </div>
                         </div>
@@ -56,7 +56,7 @@
         </div>
     </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-12">
     <div class="panel panel-default">
         <div class="panel-heading"><h4>Past products</h4></div>
         <div class="panel-body">
@@ -70,11 +70,11 @@
                         <div class="media-body">
                             <h3 class="media-heading"><a href="{% url 'view_product' product.id %}">{{ product.name }}</a></h3>
                             <p>
-                                <span >description area{{ product.description }}</span>
+                                <span >description area{{ product.description |slice:":150" }}</span>
                             </p>
                             <p>starts: <span class="glyphicon glyphicon-calendar"></span> {{ product.start_time }} ends: <span class="glyphicon glyphicon-calendar"></span>{{ product.end_time }}</p>
                             <p>
-                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ product.ticket_count }} tickets sold</a>
+                            <a href="#" class="btn btn-xs btn-default" disabled="disabled"><span class="glyphicon glyphicon-th-large"></span> {{ product.ticket_count }} tickets sold</a>
                             </p>
                         </div>
                         </div>

@@ -38,129 +38,60 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown" title="Premium Bootstrap Themes &amp; Templates"><i class="fa fa-star text-yellow"></i> {{ user.username }} <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{% url 'my_tickets' %}">my tickets</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'my_products' %}">my products</a>
-                        </li>
-                        <li class="divider"></li>
-{#                        <li class="dropdown-header">#}
-{#                            message could be placed here#}
-{#                        </li>#}
-                        <li>
-                            <a href="{% url 'account' %}">account</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'logout' %}">logout</a>
-                        </li>
-                    </ul>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="dropdown">
+                        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown" title="Premium Bootstrap Themes &amp; Templates"><i class="fa fa-star text-yellow"></i> {{ user.username }} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'my_tickets' %}">my tickets</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'my_products' %}">my products</a>
+                            </li>
+                            <li class="divider"></li>
+    {#                        <li class="dropdown-header">#}
+    {#                            message could be placed here#}
+    {#                        </li>#}
+                            <li>
+                                <a href="{% url 'account' %}">account</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="dropdown">
+                        <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-star text-yellow"></i> Login Options <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'login' %}">Direct Login</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register' %}">Register Here</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">
+                                login socially
+                            </li>
+                            <li>
+                                <a href="{% url "social:begin" "facebook" %}">Facebook Login</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>
-{#<nav class="navbar navbar-fixed-top header">#}
-{#    <div class="container">#}
-{#	<div class="col-sm-12">#}
-{#        <div class="navbar-header">#}
-{##}
-{#          <a href="#" class="navbar-brand">raffler</a>#}
-{#          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">#}
-{#          <i class="glyphicon glyphicon-search"></i>#}
-{#          </button>#}
-{##}
-{#        </div>#}
-{#        <div class="collapse navbar-collapse" id="navbar-collapse1">#}
-{#          <form class="navbar-form pull-left">#}
-{#              <div class="input-group" style="max-width:470px;">#}
-{#                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">#}
-{#                <div class="input-group-btn">#}
-{#                  <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>#}
-{#                </div>#}
-{#              </div>#}
-{#          </form>#}
-{#          <ul class="nav navbar-nav navbar-right">#}
-{#             <li><a href="{% url 'products' %}" target="_ext">Discover Products</a></li>#}
-{#             <li>#}
-{#                <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown">#}
-{#                  {{ user.username }} <small><i class="glyphicon glyphicon-chevron-down"></i></small>#}
-{#              </a>#}
-{##}
-{#              <ul class="nav dropdown-menu">#}
-{#                  <li><a href="{% url 'my_tickets' %}">my tickets</a></li>#}
-{#                  <li><a href="{% url 'my_products' %}">my products</a></li>#}
-{#                  <li class="nav-divider"></li>#}
-{#                  <li><a href="{% url 'account' %}">account</a></li>#}
-{#                  <li><a href="{% url 'logout' %}"> logout</a></li>#}
-{#              </ul>#}
-{#             </li>#}
-{#           </ul>#}
-{#        </div>#}
-{#     </div>#}
-{#    </div>#}
-{#</nav>#}
-{##}
-{#<div class="navbar navbar-default" id="subnav">#}
-{#    <div class="container">#}
-{#        <div class="col-md-12">#}
-{#            {% if user.is_authenticated %}#}
-{##}
-{#            <div class="navbar-header navbar-right">#}
-{##}
-{#              <a href="#" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown">#}
-{#                  {{ user.username }} <small><i class="glyphicon glyphicon-chevron-down"></i></small>#}
-{#              </a>#}
-{##}
-{#              <ul class="nav dropdown-menu">#}
-{#                  <li><a href="{% url 'my_tickets' %}">my tickets</a></li>#}
-{#                  <li><a href="{% url 'my_products' %}">my products</a></li>#}
-{#                  <li class="nav-divider"></li>#}
-{#                  <li><a href="{% url 'account' %}">account</a></li>#}
-{#                  <li><a href="{% url 'logout' %}"> logout</a></li>#}
-{#              </ul>#}
-{##}
-{#              <button type="button" class="navbar-toggle" id="navbar-toggle-subhead" data-toggle="collapse" data-target="#navbar-collapse2">#}
-{#              <span class="sr-only">Toggle navigation</span>#}
-{#              <span class="icon-bar"></span>#}
-{#              <span class="icon-bar"></span>#}
-{#              <span class="icon-bar"></span>#}
-{#              </button>#}
-{##}
-{#            </div>#}
-{#            <div>#}
-{##}
-{#            </div>#}
-{#            <div class="collapse navbar-collapse" id="navbar-collapse2">#}
-{#              <ul class="nav navbar-nav navbar-left">#}
-{##}
-{#                 <li class="active"><a href="{% url 'products' %}">Available Products</a></li>#}
-{#                 <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>#}
-{#                 <li><a href="#aboutModal" role="button" data-toggle="modal">About</a></li>#}
-{#               </ul>#}
-{##}
-{##}
-{#            </div>#}
-{#            {% else %}#}
-{#            {% endif %}#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
+
 <!--main content-->
 <div class="container" id="main">
     <div class="row" id="search-create">
-        <div class="col-sm-6">
+        <div class="col-sm-offset-5 col-sm-2">
             <a class="btn btn-success center-block" href="{% url 'create_raffle' %}">Create Raffler</a>
-        </div>
-        <div class="col-sm-6">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-            </div>
         </div>
     </div>
     {% block content %}
@@ -168,58 +99,15 @@
 </div>
 <!--/main-->
 
-<!--login modal-->
-<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-  <div class="modal-content">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h2 class="text-center"><img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"><br>Login</h2>
-      </div>
-      <div class="modal-body">
-          <form class="form col-md-12 center-block">
-            <div class="form-group">
-              <input type="text" class="form-control input-lg" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control input-lg" placeholder="Password">
-            </div>
-            <div class="form-group">
-              <button class="btn btn-primary btn-lg btn-block">Sign In</button>
-              <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
-            </div>
-          </form>
-      </div>
-      <div class="modal-footer">
-          <div class="col-md-12">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		  </div>	
-      </div>
-  </div>
-  </div>
-</div>
 
+    <br>
 
-<!--about modal-->
-<div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-  <div class="modal-content">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h2 class="text-center">about raffler</h2>
-      </div>
-      <div class="modal-body">
-          <div class="col-md-12 text-center">
-            <p>raffler is made with <i class="glyphicon glyphicon-heart"></i> by Bryan Yen</p>
-            <br><br>
-          </div>
-      </div>
-      <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
-      </div>
-  </div>
-  </div>
-</div>
+    <div class="clearfix"></div>
+
+    <hr>
+    <div class="col-md-12 text-center"><p><p>raffler is made with <i class="glyphicon glyphicon-heart"></i> and sweat by Bryan Yen</p></div>
+    <hr>
+
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>

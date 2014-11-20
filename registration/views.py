@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
 import facebook
-from registration.forms import ProfileUserCreationForm, PictureForm, AboutMeForm, ProfileForm
+from registration.forms import ProfileUserCreationForm, PictureForm, AboutMeForm, ProfileForm, AccountForm
 from registration.models import Profile
 
 
@@ -78,4 +78,7 @@ def register(request):
 
 
 def account(request):
-    return render(request,'registration/account.html', {})
+    account_form = AccountForm()
+    return render(request,'registration/account.html', {
+        'account_form': account_form
+    })

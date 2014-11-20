@@ -15,12 +15,12 @@
                     <div class="media-body">
                     <h3 class="media-heading"><a href="{% url 'view_product' product.id %}">{{ product.name }}</a></h3>
                     <p>
-                        <span >description area{{ product.description }}</span>
+                        <span >description area{{ product.description |slice:":250" }}</span>
                     </p>
                     <p>starts: <span class="glyphicon glyphicon-calendar"></span> {{ product.start_time }} ends: <span class="glyphicon glyphicon-calendar"></span>{{ product.end_time }}</p>
                     <p>
-                    <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-th-large"></span> {{ product.tickets_sold }} ticket sold</a>
-                    <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-star"></span> buy tickets now</a>
+                    <a href="#" class="btn btn-xs btn-default" disabled="disabled"><span class="glyphicon glyphicon-th-large"></span> {{ product.tickets_sold }} ticket sold</a>
+                    <a href="{% url 'view_product' product.id %}" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-star"></span> buy tickets now</a>
                     </p>
                     </div>
                 </div>

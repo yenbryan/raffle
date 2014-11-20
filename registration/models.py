@@ -1,6 +1,9 @@
+from random import randint
+import datetime
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import EmailMultiAlternatives
 from django.db import models
+from django.db.models import Count
 import local_settings
 
 
@@ -16,3 +19,9 @@ class Profile(AbstractUser):
         msg = EmailMultiAlternatives('{}'.format(subject) , text_content, local_settings.DEFAULT_FROM_EMAIL, [self.email])
         msg.attach_alternative(html_content, 'text/html')
         msg.send()
+
+
+class CreditCard(models.Model):
+    card_number = models.CharField(max_length=16)
+    exp_date = models.CharField(max_length=7)
+    user = models.ForeignKey(Profile, related_name="credit_cards")
