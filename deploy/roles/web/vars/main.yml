@@ -1,10 +1,10 @@
 ---
 
-virtualenv_path: /home/ubuntu/.virtualenvs/raffle
 git_repo: https://github.com/yenbryan/raffle.git
 git_version: master
 project_name: raffle
+virtualenv_path: /home/ubuntu/.virtualenvs/{{ project_name }}
 project_path: "/home/ubuntu/{{ project_name }}"
 requirements_file: "{{ project_path }}/requirements.txt"
 supervisor_path: /etc/supervisor/conf.d/{{ project_name }}.conf
-wsgi_root: raffle
+wsgi_root: {{ project_name }}

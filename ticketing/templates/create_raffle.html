@@ -4,5 +4,9 @@
     <hr>
     <h1>Create Raffler</h1>
     <hr>
-    {{ form.as_p }}
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-xl" type="submit">Create Raffle</button>
+    </form>
 {% endblock %}

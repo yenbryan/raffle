@@ -1,10 +1,17 @@
+import braintree
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Count
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from ticketing.forms import CreateRaffleForm
 from ticketing.models import Product, Ticket, Picture
 import datetime
 
+braintree.Configuration.configure(
+    braintree.Environment.Sandbox,
+    merchant_id='cyttpz8353vkpbrd',
+    public_key='nrn2r5tngvrn5f2v',
+    private_key='0f09fcb2f66e479b3473297b35d85d35'
+)
 
 def products(request):
     all_products = Product.objects.filter(end_time__gte=datetime.datetime.now())
@@ -33,21 +40,16 @@ def view_product(request, product_id):
 def my_products(request):
     products = Product.objects\
         .filter(user=request.user)\
-        .filter(end_time__gte=datetime.datetime.now())
-    tickets = Ticket.objects.filter(product__in=products)\
-        .values('product')\
-        .annotate(number_of_tickets_sold=Count('product'))
+        .filter(end_time__gte=datetime.datetime.now())\
+        .annotate(ticket_count=Count('tickets'))
     past_products = Product.objects\
         .filter(user=request.user)\
-        .filter(end_time__lte=datetime.datetime.now())
-    past_tickets = Ticket.objects.filter(product__in=past_products)\
-        .values('product')\
-        .annotate(number_of_tickets_sold=Count('product'))
+        .filter(end_time__lte=datetime.datetime.now())\
+        .annotate(ticket_count=Count('tickets'))
+
     return render(request, 'ticketing/my_products.html', {
         'products': products,
-        'tickets':tickets,
         'past_products': past_products,
-        'past_tickets': past_tickets
     })
 
 
@@ -90,8 +92,35 @@ def splash_index(request):
 
 def create_raffle(request):
     create_raffle_form = CreateRaffleForm()
+
+    if request.method == "POST":
+        raffle_form = CreateRaffleForm(request.POST)
+
+        if raffle_form.is_valid():
+            raffle = raffle_form.save(request.user)
+            if raffle:
+                return redirect('my_products')
+    #
+    #         if message:
+    #             for recipient in send_form.cleaned_data['recipient']:
+    #                 receiver = Receiver.objects.create(message=message,
+    #                                                    recipient=Profile.objects.get(id=recipient))
+    #             return redirect('dashboard')
+    # data = {'messageactive': 'active',
+    #         'profile': profile_picture,
+    #         'send_form': send_form}
+
     return render(request, 'create_raffle.html', {'form': create_raffle_form})
 
+    # send_form = SendMessageForm()
+    # profile = Profile.objects.get(id=request.user.id)
+    # try:
+    #     profile_picture = ProfilePicture.objects.get(profile=profile, default_picture=True)
+    # except:
+    #     profile_picture = None
+    #
+    #
+    # return render(request, 'message/send_message.html', data)
 
 def purchase(request, product_id):
     pass

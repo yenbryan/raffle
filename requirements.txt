@@ -5,6 +5,7 @@ Pillow==2.6.1
 PyJWT==0.3.0
 PyYAML==3.11
 ansible==1.7.2
+braintree==3.6.0
 ecdsa==0.11
 facebook-sdk==0.4.0
 oauthlib==0.7.2
