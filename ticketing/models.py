@@ -12,10 +12,12 @@ class Product(models.Model):
     name = models.CharField(max_length=140, blank=False, null=False)
     description = models.TextField(blank=True, null=True)
     total_number_of_tickets = models.IntegerField()
+    # Wouldn't this just be the number of tickets tied to this product? Shouldn't need to save this
     tickets_sold = models.IntegerField(default=0)
     end_time = models.DateTimeField()
     start_time = models.DateTimeField()
     pricing_per_ticket = models.DecimalField(max_digits=8, decimal_places=2)
+    # Should this maybe just be a ForeignKey to the winning ticket?
     winning_ticket_number = models.IntegerField(blank=True)
     user = models.ForeignKey(Profile, related_name='products')
     default_picture = models.ForeignKey("Picture", related_name="products", blank=True, null=True)
@@ -24,6 +26,7 @@ class Product(models.Model):
         return '${}'.format(self.pricing_per_ticket)
 
     def get_winning_probability(self, ticket_count):
+        # In your demo your winning probability numbers looked wrong, should write some tests!
         return (float(ticket_count)*100)/float(self.total_number_of_tickets)
 
     def save(self, *args, **kwargs):
@@ -43,6 +46,7 @@ class Ticket(models.Model):
 
     def save(self, *args, **kwargs):
         #  Create winning raffle ticket number
+        # This could be cleaner if the relationships were tightened up
         self.product.tickets_sold = int(self.product.tickets_sold) + 1
         self.product.save()
         self.ticket_number = self.product.tickets_sold
