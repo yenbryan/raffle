@@ -13,6 +13,7 @@ class Profile(AbstractUser):
         return self.username
 
     def send_email(self, subject, message):
+        # Why use these formats instead of just the variable?
         self.email_user('{}'.format(subject), '{}'.format(message))
         text_content = '{}'.format(message)
         html_content = '{}'.format(message)
@@ -21,6 +22,7 @@ class Profile(AbstractUser):
         msg.send()
 
 
+# Lots of rules around ecommerce, you're not allowed to store credit card numbers
 class CreditCard(models.Model):
     card_number = models.CharField(max_length=16)
     exp_date = models.CharField(max_length=7)
