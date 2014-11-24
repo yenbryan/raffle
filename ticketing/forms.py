@@ -27,6 +27,11 @@ class TicketPurchaseForm(forms.Form):
                     "expiration_date": credit_card.exp_date
                 }
             })
+        # I think you mentioned in the demo, but the models for credit card transaction and saving the CC info
+        # need to be fixed up.
+        
+        # You shouldn't be saving credit card information, instead braintree should give you a "token"
+        # which represents the credit card in their system.
         if result.is_success:
             print("success!: " + result.transaction.id)
             for ticket in range(0, int(self.cleaned_data['quantity'])):
@@ -42,6 +47,7 @@ class TicketPurchaseForm(forms.Form):
                 print("  message: " + error.message)
         return result
 
+# Would this have been easier and cleaner as a ModelForm?
 class CreateRaffleForm(forms.Form):
     name = forms.CharField(max_length=125,
                            widget=forms.TextInput(attrs={'class': 'form-control',
@@ -72,6 +78,8 @@ class CreateRaffleForm(forms.Form):
                                          end_time=self.cleaned_data['end_time'],
                                          pricing_per_ticket=self.cleaned_data['pricing_per_ticket'],
                                          user=user)
+        # can there be more than one picture for a product? if so, then the way you structured things is okay,
+        # if not, maybe it should just be a field on `Product` instead of a separate model
         pic = Picture.objects.create(description=self.cleaned_data['picture_description'],
                                      image=self.cleaned_data['picture_upload'],
                                      product=product)
