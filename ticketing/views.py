@@ -59,6 +59,7 @@ def view_product(request, product_id):
 
 
 def my_products(request):
+    # similar queries, could have them share a function or a model manager to share code and be more DRY
     products = Product.objects\
         .filter(user=request.user)\
         .filter(end_time__gte=datetime.datetime.now())\
@@ -75,6 +76,7 @@ def my_products(request):
 
 
 def my_tickets(request):
+    # same comment as above
     unexpired_tickets = Ticket.objects\
         .filter(product__end_time__gte=datetime.datetime.now())\
         .filter(user=request.user).distinct('product')
